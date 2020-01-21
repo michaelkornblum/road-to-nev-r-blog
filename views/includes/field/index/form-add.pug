@@ -1,0 +1,29 @@
+form.mt-1(action=`/field/add/${category._id}` method="POST")
+    legend New Field
+    div.form-group
+        label.form-label(for="field-name") Field Name
+        input.form-control#field-name(
+            class=(duplicateName ? 'is-invalid' : '')
+            name="name"
+            type="text"
+            required
+            disabled=(isEditing || isDeleting ? true : false)
+        )
+        if duplicateName
+            div.invalid-feedback Field name, #{fieldName} is already taken.
+
+    div.form-group
+        label.form-label(for="field-type") Field Type
+        input.form-control#field-type(
+            name="type"
+            list="field-types"
+            disabled=(isEditing || isDeleting ? true : false)
+        )
+        datalist#field-types
+            each fieldType in fieldTypes
+                option(value=fieldType)
+
+    button.btn.btn-success.mt-auto(
+        type="submit"
+        disabled=(isEditing || isDeleting ? true : false)
+    ) Save &amp; Configure

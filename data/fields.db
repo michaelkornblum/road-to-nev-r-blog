@@ -1,0 +1,7 @@
+{"name":"article","categoryId":"T2E6WyusgPLe1WY6","type":"text","position":1,"_id":"MK3qI6kgdZ5qKD5n","createdAt":{"$$date":1579591698571},"updatedAt":{"$$date":1579598003471}}
+{"name":"contributor","categoryId":"T2E6WyusgPLe1WY6","type":"string","position":2,"_id":"UgtYZPKHdUCS3NTv","createdAt":{"$$date":1579596877830},"updatedAt":{"$$date":1579598003472}}
+{"name":"contributor","categoryId":"T2E6WyusgPLe1WY6","type":"string","position":1,"_id":"UgtYZPKHdUCS3NTv","createdAt":{"$$date":1579596877830},"updatedAt":{"$$date":1579624737453}}
+{"name":"article","categoryId":"T2E6WyusgPLe1WY6","type":"text","position":2,"_id":"MK3qI6kgdZ5qKD5n","createdAt":{"$$date":1579591698571},"updatedAt":{"$$date":1579624737456}}
+{"name":"contributor","categoryId":"T2E6WyusgPLe1WY6","type":"string","position":2,"_id":"UgtYZPKHdUCS3NTv","createdAt":{"$$date":1579596877830},"updatedAt":{"$$date":1579624740394}}
+{"name":"article","categoryId":"T2E6WyusgPLe1WY6","type":"text","position":1,"_id":"MK3qI6kgdZ5qKD5n","createdAt":{"$$date":1579591698571},"updatedAt":{"$$date":1579624740395}}
+{"$$deleted":true,"_id":"UgtYZPKHdUCS3NTv"}

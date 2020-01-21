@@ -1,0 +1,16 @@
+extends ../layouts/base
+
+block breadcrumbs
+    ul.breadcrumb
+        li.breadcrumb-item 
+            a.breadcrumb-link(href="/") categories
+        li.breadcrumb-item
+            a.breadcrumb-link(href=`/fields?categoryId=${category.id}`) #{category.name} fields
+        li.breadcrumb-item #{field.name} settings
+
+block mainContent
+    div.column-centered
+        form(action=`/field/config/${field._id}/${mode}` method="POST")
+            legend #{field.name}(#{field.type}) settings
+            div.form-group
+                button.btn.btn-success(type="submit") save &amp; exit

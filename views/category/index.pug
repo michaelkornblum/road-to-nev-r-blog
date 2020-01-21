@@ -1,0 +1,57 @@
+extends ../layouts/base
+include ../mixins/global
+
+block breadcrumbs
+    ul.breadcrumb
+        li.breadcrumb-item categories
+
+block modals
+    if isDeleting
+        include ../includes/category/modal-delete
+    if noFields
+        include ../includes/category/modal-no-fields
+
+block sidebar
+    div.col-md-4.col-lg-3.col-xl-2.sidebar.bg-light
+        include ../includes/category/form-add
+
+block mainContent
+    div.col-md-8.col-lg-9.col-xl-10
+        if categories.length
+            h1 Category List
+
+            //- Notification Area
+            if wasAdded
+                +notification('Category', categoryName, 'added')
+            if wasEdited
+                +notification('Category', categoryName, 'edited')
+            if wasDeleted
+                +notification('Category', categoryName, 'deleted')
+
+            //- category List
+            ul.list-group.list-group-flush.container-fluid
+                each category in categories
+                    li.list-group-item.d-flex.justify-content-sm-between.align-items-center.row
+                        //- category names
+                        if isEditing && categoryId === category._id
+                            include ../includes/category/form-edit
+                        else
+                            span.ml-3=category.name
+
+                        //- Control Buttons
+                        -const isDisabled = isEditing || isDeleting || noFields
+                        if !isEditing || categoryId !== category._id
+                            div.btn-group.col-sm-10.justify-content-sm-end.my-2(role="group")
+
+                                +listItemLink('primary', 'fields', `/fields?categoryId=${category._id}`, isDisabled)
+
+                                +listItemLink('secondary', 'entries', `/entries?categoryId=${category._id}`, isDisabled)
+
+                                +listItemLink('warning', 'edit', `/category/edit?id=${category._id}`, isDisabled)
+
+                                +listItemLink('danger', 'delete', `/category/delete?id=${category._id}`, isDisabled)
+
+        else
+            //- No categorys yet.
+            h1.mt-2 No Categories on File
+            p Create your first category with the form on the left.

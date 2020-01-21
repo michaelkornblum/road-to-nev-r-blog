@@ -1,0 +1,22 @@
+form.form-inline.ml-3(action=`/field/edit/${field._id}` method="POST")
+    div.form-group
+        label.mr-2(for="field-name") name
+        input.form-control.mr-2#field-name(
+            type="text"
+            name="name"
+            value=field.name
+            required
+        )
+    div.form-group
+        label.mr-2(for="field-type") type
+        input.form-control.mr-2#field-type(
+            list="field-types"
+            name="type"
+            value=field.type
+        )
+        datalist#field-types
+            each fieldType in fieldTypes
+                option(value=fieldType)
+        div.btn-group.my-3
+            button.btn.btn-success(type="submit") save
+            a.btn.btn-secondary.mx-1(href=`../../fields?categoryId=${category._id}`) cancel

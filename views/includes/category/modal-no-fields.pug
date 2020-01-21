@@ -1,0 +1,13 @@
+div.modal-backdrop.show
+div.modal#no-fields-modal(style="display: block", role="dialog")
+    div.modal-dialog.modal-dialog-centered(role="document")
+        div.modal-content
+            div.modal-header.bg-primary.text-light
+                h2.modal-title No Fields Detected
+            div.modal-body
+                p Each entry requires at least one category field to store data in.
+                p Unfortunately, there are no fields created for the <strong>#{categoryName}</strong> category.
+                p Would you liek to create some fields for the <strong>#{categoryName}</strong> now?
+            div.modal-footer
+                a.btn.btn-primary(href=`/fields?categoryId=${categoryId}`) yes
+                a.btn.btn-primary(href="/") no

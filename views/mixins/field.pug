@@ -1,0 +1,6 @@
+mixin moveField(field, direction, isDisabled)
+    form(action=`/field/move-${direction}/${field._id}` method="POST")
+        button.btn.btn-info.ml-2(
+            type="submit" 
+            disabled=(isDisabled ? true: false)
+        ) move #{direction}

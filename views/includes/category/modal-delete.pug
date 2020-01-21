@@ -1,0 +1,14 @@
+div.modal-backdrop.show
+div.modal#delete-modal(style="display: block", role="dialog")
+    div.modal-dialog.modal-dialog-centered(role="document")
+        div.modal-content
+            div.modal-header.bg-danger.text-light
+                h2.modal-title Danger!!!
+            div.modal-body
+                p You are about to delete the <strong>#{categoryName}</strong> category.
+                p When you delete a category, all associated fields and entries will also be deleted. 
+                p Do you really want to do this?
+            div.modal-footer
+                a.btn.btn-secondary(href="/") cancel
+                form(action=`/category/delete/${categoryId}` method="POST")
+                    button.btn.btn-danger(type="submit") delete

@@ -1,0 +1,14 @@
+div.modal-backdrop.show
+div.modal(style="display: block", role="dialog")
+    div.modal-dialog.modal-dialog-centered(role="document")
+        div.modal-content
+            div.modal-header.bg-danger.text-light
+                h2.modal-title Danger!!!
+            div.modal-body
+                p You are about to delete the #{fieldName} field.
+                p When you delete a field, all references made to that field in your entries will be deleted too. 
+                p Do you really want to do this?
+            div.modal-footer
+                a.btn.btn-secondary(href=`/fields?categoryId=${category._id}`) cancel
+                form(action=`/field/delete/${fieldId}` method="POST")
+                    button.btn.btn-danger(type="submit") delete

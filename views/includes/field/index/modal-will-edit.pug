@@ -1,0 +1,14 @@
+div.modal-backdrop.show
+div.modal(style="display: block", role="dialog")
+    div.modal-dialog.modal-dialog-centered(role="document")
+        div.modal-content
+            div.modal-header.bg-warning.text-light
+                h2.modal-title Warning
+            div.modal-body
+                p You are about to edit the <strong>#{fieldName}</strong> field.
+                p When you edit a field, all of its configuration settings are lost. Additionally, all the data contained in entries that use this field will be lost as well.
+                p If you only want to change a few settings in this field withoug experiencing data loss, cancel out of this dialog and click the configure button instead.
+            div.modal-footer
+                a.btn.btn-warning(href=`/field/edit?id=${fieldId}`) edit
+                a.btn.btn-secondary(href=`/fields?categoryId=${category._id}`) cancel
+

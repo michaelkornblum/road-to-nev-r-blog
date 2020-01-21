@@ -1,0 +1,17 @@
+form.mt-1(action="/category/add" method="POSt")
+    legend New category
+    div.form-group
+        label.form-label(for="category-name") category Name
+        input.form-control#category-name(
+            class=(duplicateName ? 'is-invalid' : '')
+            name="name"
+            type="text"
+            required
+            disabled=(isEditing || isDeleting ? true : false)
+        )
+        if duplicateName
+            div.invalid-feedback category name, <strong>#{categoryName}</strong> is already taken.
+        button.btn.btn-success.mt-2(
+            type="submit"
+            disabled=(isEditing || isDeleting ? true : false)
+        ) save

@@ -1,0 +1,68 @@
+extends ../layouts/base
+include ../mixins/global
+include ../mixins/field
+
+block breadcrumbs
+    ul.breadcrumb
+        li.breadcrumb-item 
+            a.breadcrumb-link(href="/") categories
+        li.breadcrumb-item
+            a.breadcrumb-link(href=`/entries?categoryId=${category._id}`) #{category.name} entries
+        li.breadcrumb-item #{category.name} fields
+
+block modals
+    if isDeleting
+        include ../includes/field/index/modal-delete
+    if willEdit
+        include ../includes/field/index/modal-will-edit
+
+block sidebar
+    div.col-md-4.col-lg-3.col-xl-2.sidebar.bg-light
+        include ../includes/field/index/form-add
+
+block mainContent
+    div.col-md-8.col-lg-9.col-xl-10
+        if fields.length
+            h1.mt-2 Field List
+
+            //- Notification Area
+            if wasAdded
+                +notification('Field', fieldName, 'added')
+            if wasEdited
+                +notification('Field', fieldName, 'edited')
+            if wasDeleted
+                +notification('Field', fieldName, 'deleted')
+            if wasMoved
+                +notification('Field', fieldName, 'moved')
+            if wasConfigured
+                +notification('Field', fieldName, 'configured')
+
+            //- Field List
+            ul.list-group.list-group-flush.container-fluid
+                each field in fields
+                    li.list-group-item.d-flex.justify-content-md-between.align-items-center.row
+                        //- Field names
+                        if isEditing && fieldId === field._id
+                            include ../includes/field/index/form-edit
+                        else
+                            div.col-lg-2.my-1=field.name
+
+                        //- Control Buttons
+                        -const isDisabled = isEditing || isDeleting || willEdit
+
+                        if !isEditing || fieldId !== field._id
+                            div.btn-group.col-sm-10.justify-content-lg-end.my-2(role="group")
+
+                                +moveField(field, 'up', isDisabled || field.position === 1)
+
+                                +moveField(field, 'down', isDisabled || field.position === fields.length)
+
+                                +listItemLink('warning', 'edit', `/field/will-edit?id=${field._id}`, isDisabled)
+
+                                +listItemLink('primary', 'settings', `/field/settings?id=${field._id}&mode=default`, isDisabled)
+
+                                +listItemLink('danger', 'delete', `/field/delete?id=${field._id}&categoryId=${category._id}`, isDisabled)
+        else
+            //- No categories yet.
+            h1.mt-2 No Fields on File
+            p Create your first field with the form on the left.

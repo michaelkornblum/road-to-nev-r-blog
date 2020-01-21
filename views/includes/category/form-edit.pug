@@ -1,0 +1,11 @@
+form.form-inline.ml-3(action=`/category/edit/${category._id}` method="POST")
+    label.mr-2(for="category-name") name
+    input.form-control.mr-2#category-name(
+        type="text"
+        name="name"
+        value=category.name
+        required=true
+    )
+    div.btn-group.my-3
+        button.btn.btn-success(rype="submit") save
+        a.btn.btn-secondary.mx-1(href="/") cancel

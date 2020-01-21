@@ -1,0 +1,11 @@
+mixin notification(category, name, action)
+    div.alert.alert-info.alert-dismissable.fade.show(role="alert") #{category} <strong>#{name}</strong> has been #{action}.
+        button.close(type="button" data-dismiss="alert")
+            span(aria-hidden="true") &times;
+
+mixin listItemLink(color, label, url, isDisabled=false)
+    - let classes = `ml-2 btn btn-${color}`
+    a(
+        class=(isDisabled ? `${classes} disabled` : classes)
+        href=(isDisabled ? null : url)
+    )=label
