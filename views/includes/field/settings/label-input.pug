@@ -1,0 +1,8 @@
+div.form-group
+    label.col-form-label(for="label") Field Label
+    input.form-control#label(
+        type="text"
+        name="label"
+        value=(mode !== 'adding' ? field.config.label : null)
+        required
+    )

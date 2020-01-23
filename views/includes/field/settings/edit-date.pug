@@ -1,0 +1,31 @@
+include ./label-input
+include ./direction-input
+
+div.form-group
+    div.custom-control.custom-checkbox
+        input.custom-control-input#limitMin(
+            type="checkbox"
+            name="limitMin"
+            checked=(mode !== "adding" && field.config.limitMin === "on" ? true : false)
+        )
+        label.custom-control-label(for="limitMin") Input cannot be set before current date or time.
+
+div.form-group
+    div.custom-control.custom-checkbox
+        input.custom-control-input#useMin(
+            type="checkbox"
+            name="useMin"
+            checked=(mode !== "adding" && field.config.useMin === "on" ? true : false)
+        )
+        label.custom-control-label(for="useMin") Set minimum date / time.
+
+div.form-group
+    div.custom-control.custom-checkbox
+        input.custom-control-input#useMax(
+            type="checkbox"
+            name="useMax"
+            checked=(mode !== "adding" && field.config.useMax === "on" ? true : false)
+        )
+        label.custom-control-label(for="useMax") Set maximum date / time.
+
+include ./required-input

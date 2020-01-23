@@ -6,7 +6,7 @@ module.exports = class Base {
 		this.db = new Datastore({
 			filename: setFileLocation(fileName),
 			autoload: true,
-			timestampData: true
+			timestampData: true,
 		});
 	}
 	insert(obj) {
@@ -35,9 +35,9 @@ module.exports = class Base {
 		);
 	}
 
-	remove(obj, multi = false) {
+	remove(obj, opts={}) {
 		return new Promise((res, rej) =>
-			this.db.remove(obj, { multi }, err => (err ? rej(err) : res())),
+			this.db.remove(obj, opts, err => (err ? rej(err) : res())),
 		);
 	}
 };

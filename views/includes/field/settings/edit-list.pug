@@ -1,0 +1,34 @@
+include ./label-input
+include ./direction-input
+
+div.form-group
+    label.form-label(for="list") List
+    input.form-control#list(
+        type="text",
+        name="list"
+        value=(mode !== 'adding' ? field.config.list : null)
+        required
+    )
+    small Use a comma-seperated list. Example: foo, bar, baz
+
+div.form-group
+    label.form-label(for="element") HTML Element
+    select.form-control#element(name="htmlElement")
+        option(
+            value="datalist" 
+            selected=(mode !== 'adding' && field.config.htmlElement
+             === "datalist" ? true : false)
+        ) datalist
+        option(
+            value="select" 
+            selected=(mode !== 'adding' && field.config.htmlElement === "select" || mode === 'adding' ? true : false)
+        ) select
+        option(
+            value="checkboxes" 
+            selected=(mode !== 'adding' && field.config.htmlElement === "checkboxes" ? true : false)
+        ) checkboxes
+        option(
+            value="radio" 
+            selected=(mode !== 'adding' && field.config.htmlElement === "radio" ? true : false)
+            ) radio buttons
+

@@ -4,3 +4,13 @@ mixin moveField(field, direction, isDisabled)
             type="submit" 
             disabled=(isDisabled ? true: false)
         ) move #{direction}
+
+mixin numInput(name, mode, field, useDecimals)
+    input.form-control(
+        id=name
+        name=name
+        type="number"
+        min=(useDecimals ? "0.01" :"1")
+        step=(useDecimals ? "0.01" : null)
+        value=(mode !== 'adding' && field.config[name] ? field.config[name] : null)
+    )

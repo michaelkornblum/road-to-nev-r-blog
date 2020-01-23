@@ -2,15 +2,35 @@ extends ../layouts/base
 
 block breadcrumbs
     ul.breadcrumb
-        li.breadcrumb-item 
-            a.breadcrumb-link(href="/") categories
-        li.breadcrumb-item
-            a.breadcrumb-link(href=`/fields?categoryId=${category.id}`) #{category.name} fields
+        if mode !== "adding"
+            li.breadcrumb-item 
+                a.breadcrumb-link(href="/") categories
+            li.breadcrumb-item
+                a.breadcrumb-link(href=`/fields?categoryId=${category._id}`) #{category.name} fields
         li.breadcrumb-item #{field.name} settings
 
-block mainContent
+block mainContent 
     div.column-centered
         form(action=`/field/config/${field._id}/${mode}` method="POST")
             legend #{field.name}(#{field.type}) settings
+            case field.type
+                when 'boolean'
+                    include ../includes/field/settings/edit-boolean
+                when 'date'
+                    include ../includes/field/settings/edit-date
+                when 'hidden'
+                    include ../includes/field/settings/edit-hidden-image-link
+                when 'image'
+                    include ../includes/field/settings/edit-hidden-image-link
+                when 'link'
+                    include ../includes/field/settings/edit-hidden-image-link
+                when 'list'
+                    include ../includes/field/settings/edit-list
+                when 'number'
+                    include ../includes/field/settings/edit-number
+                when 'string'
+                    include ../includes/field/settings/edit-string-text
+                when 'text'
+                    include ../includes/field/settings/edit-string-text
             div.form-group
                 button.btn.btn-success(type="submit") save &amp; exit

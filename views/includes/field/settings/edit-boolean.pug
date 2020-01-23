@@ -1,0 +1,20 @@
+include ./label-input 
+include ./direction-input
+
+div.form-group
+    legend.col-form-label Default
+    input.radio.mr-2#default-true(
+        type="radio"
+        name="default"
+        value="true"
+        checked=(mode === 'adding' || mode !== 'adding' && field.config.default === "true" ? true : false)
+    )
+    label.col-form-label.mr-4(for="default-true") True
+    
+    input.radio.mr-1#default-false(
+        type="radio"
+        name="default"
+        value="false"
+        checked=(mode !== 'adding' && field.config.default === "false" ? true : false)
+    )
+    label.col-form-label.ml-2(for="default-false") False

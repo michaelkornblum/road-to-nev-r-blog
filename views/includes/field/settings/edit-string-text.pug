@@ -1,0 +1,19 @@
+include ../../../mixins/field
+
+include ./label-input
+include ./direction-input
+
+div.form-group
+    label.form-label(for="min") Minimum Character
+    +numInput("min", mode, field, false)
+
+div.form-group
+    label.form-label(for="max") Maximum Value
+    +numInput("max", mode, field, false)
+
+if field.type === 'text'
+    div.form-group
+        label.form-label(for="rows") Rows
+        +numInput("rows", mode, field, false)
+
+include ./required-input

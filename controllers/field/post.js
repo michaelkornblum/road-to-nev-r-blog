@@ -60,7 +60,7 @@ exports.postEditField = async (req, res) => {
 exports.postConfigField = async (req, res) => {
 	try {
 		const field = await Field.findOne({_id: req.params.id});
-		await Field.update(req.params.id, {config: req.body});
+		await Field.update({_id: req.params.id}, {config: req.body});
 		switch (req.params.mode) {
 		case "adding":
 			res.redirect(`/field/added?name=${field.name}&categoryId=${field.categoryId}`);

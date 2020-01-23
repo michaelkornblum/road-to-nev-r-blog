@@ -1,4 +1,5 @@
 const Category = require("../../models/Category");
+const Field = require("../../models/Field");
 const {camelCase} = require("../../utils/string-operations");
 
 exports.postAddCategory = async (req, res) => {
@@ -32,7 +33,8 @@ exports.postEditCategory = async(req, res) => {
 exports.postDeleteCategory = async(req, res) => {
 	try {
 		const category = await Category.findOne({_id: req.params.id});
-		await Category.remove({_id: req.params.id});
+		await Category.remove({_id: req.params.id}, {multi: true});
+		await Field.remove({categoryId: req.params.id})
 		res.redirect(`/category/deleted?name=${category.name}`);
 	} catch (err) {
 		console.error(err);

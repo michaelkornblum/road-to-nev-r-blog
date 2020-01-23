@@ -1,0 +1,5 @@
+div.form-group
+    label.col-form-label(for="directions") User Directions
+    textarea.form-control#directions(
+        name="directions"
+    )=mode !== 'adding' && field.config.directions ? field.config.directions : ''

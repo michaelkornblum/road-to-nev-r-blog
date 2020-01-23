@@ -1,0 +1,8 @@
+div.form-group
+    div.custom-control.custom-checkbox
+        input.custom-control-input#required(
+            type="checkbox"
+            name="required"
+            checked=(mode !== "adding" && field.config.required === "on" ? true : false)
+        )
+        label.custom-control-label(for="required") Field is Required
