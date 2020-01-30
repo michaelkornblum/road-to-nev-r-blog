@@ -1,0 +1,55 @@
+extends ../layouts/base
+include ../mixins/global
+
+block breadcrumbs
+    ul.breadcrumb
+        li.breadcrumb-item
+            a.breadcrumb-link(href="/") categories
+        li.breadcrumb-item
+            a.breadcrumb-link(href=`/fields?categoryId=${category._id}`) #{category.name} fields
+        li.breadcrumb-item #{category.name} entries
+
+block modals
+    if isDeleting
+        include ../includes/entry/index/modal-delete
+
+block sidebar
+    div.col-md-4.col-lg-3.col-xl-2.sidebar.bg-light
+        +buttonLink('success', 'Add New Entry', `/entry/add?categoryId=${category._id}`, isDeleting)
+
+block mainContent
+    div.col-md-8.col-lg-9.cole-xl-10
+        if entries.length
+            h1.mt-2 Entry List
+
+            //- Notification Area
+            if wasDeleted
+                +notification('Entry', entryTitle, 'deleted')
+
+            //- Entry Table
+            div.table-responsive-lg
+                table.table.table-bordered.table-striped
+                    thead
+                        tr 
+                            th(scope="col") Title
+                            th(scope="col") Author
+                            th(scope="col") Creation Date
+                            th(scope="col") Last Modified
+                            th(scope="col") Actions
+                    tbody
+                        each entry in entries
+                            tr
+                                th(scope="row")=entry.title
+                                td John Doe
+                                td=moment(entry.createdAt).format('MMMM Do YYYY, h:mm:ss a')
+                                td=td=moment(entry.updatedAt).format('MMMM Do YYYY, h:mm:ss a')
+                                td
+                                    div.button-group(role="group")
+                                        +listItemLink('warning', 'edit', `/entry/edit?id=${entry._id}&categoryId=${category._id}`, isDeleting)
+
+
+                                        +listItemLink('danger', 'delete', `/entry/delete?id=${entry._id}&categoryId=${category._id}`, isDeleting)
+        else
+            //- No categories yet.
+            h1.mt-2 No Entries on File
+            p Click the button on the left to create your first entry. 

@@ -1,0 +1,47 @@
+extends ../layouts/base
+include ../mixins/global
+
+block breadcrumbs
+    ul.breadcrumb
+        li.breadcrumb-item
+            a.breadcrumb-link(href="/") categories
+        li.breadcrumb-item
+            a.breadcrumb-link(href=`/fields?categoryId=${category._id}`) #{category.name} fields
+        li.breadcrumb-item
+            a.breadcrumb-link(href=`/entries?categoryId=${category._id}`) #{category.name} entries
+        if isAdding === true
+            li.breadcrumb-item new #{category.name} entry
+        else
+            li.breadcrumb-item edit #{category.name} entry
+
+block mainContent
+    div.column-centered
+        if wasSaved === true
+            +notification('Entry', entry.title, 'saved')
+
+        form(
+            method="POST"
+            action=(isAdding ? `/entry/add/${category._id}` : `/entry/edit/${entry._id}`)
+        )
+
+            if isAdding === true
+                legend Create a New Entry
+            else
+                legend Edit Entry
+
+            input(type="hidden" name="author" value="jDoe91")
+
+            div.form-group
+                label.form-label(for="title") Title
+                input.form-control#title(
+                    class=(duplicateName === true ? 'is-invalid' : '')
+                    type="text"
+                    name="title"
+                    value=(isEditing === true ? entry.title : null)
+                    required
+                )
+                if isEditing === true && duplicateName === true
+                    div.invalid-feedback Entry title, <strong>#{entry.title}</strong> is already taken.
+
+            button.btn.btn-success(type="submit") Save
+

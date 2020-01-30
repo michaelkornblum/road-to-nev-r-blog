@@ -1,9 +1,9 @@
-const Category = require("../../models/Category");
-const {capitalize} = require("../../utils/string-operations");
+const Category = require('../../models/Category');
+const { capitalize } = require('../../utils/string-operations');
 
 const defaultRenderObject = {
 	capitalize,
-	pageTitle: "categories",
+	pageTitle: 'categories',
 	wasAdded: false,
 	isEditing: false,
 	wasEdited: false,
@@ -16,15 +16,17 @@ const defaultRenderObject = {
 const takeAction = key => async (req, res) => {
 	try {
 		const categories = await Category.find();
-		const category = await Category.findOne({_id: req.query.id});
-		res.render("category/index", {
+		const category = await Category.findOne({
+			_id: req.query.id,
+		});
+		res.render('category/index', {
 			...defaultRenderObject,
 			categories,
 			categoryName: category.name,
 			categoryId: category._id,
-			[key]: true
+			[key]: true,
 		});
-	} catch(err) {
+	} catch (err) {
 		console.error(err);
 	}
 };
@@ -32,33 +34,37 @@ const takeAction = key => async (req, res) => {
 const actionTaken = key => async (req, res) => {
 	try {
 		const categories = await Category.find();
-		res.render("category/index", {
+		const category = await Category.findOne({ name: req.query.name });
+		res.render('category/index', {
 			...defaultRenderObject,
 			categories,
+			categoryId: category._id,
 			categoryName: req.query.name,
-			[key]: true
+			[key]: true,
 		});
 	} catch (err) {
 		console.error(err);
 	}
 };
 
-exports.getCategoryIndex = async(req, res) => {
+exports.getCategoryIndex = async (req, res) => {
 	try {
 		const categories = await Category.find();
-		res.render("category/index", {
-			...defaultRenderObject, 
-			categories
+		console.log(categories);
+		res.render('category/index', {
+			...defaultRenderObject,
+			categories,
 		});
 	} catch (err) {
 		console.error(err);
 	}
 };
 
-exports.getEditCategory = takeAction("isEditing");
-exports.getDeleteCategory = takeAction("isDeleting");
+exports.getEditCategory = takeAction('isEditing');
+exports.getDeleteCategory = takeAction('isDeleting');
 
-exports.getAddedCategory = actionTaken("wasAdded");
-exports.getDuplicateCategory = actionTaken("duplicateName");
-exports.getEditedCategory = actionTaken("wasEdited");
-exports.getDeletedCategory = actionTaken("wasDeleted");
+exports.getAddedCategory = actionTaken('wasAdded');
+exports.getDuplicateCategory = actionTaken('duplicateName');
+exports.getEditedCategory = actionTaken('wasEdited');
+exports.getDeletedCategory = actionTaken('wasDeleted');
+exports.getNoFields = actionTaken('noFields');

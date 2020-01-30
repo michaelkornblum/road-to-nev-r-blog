@@ -45,7 +45,7 @@ block mainContent
 
                                 +listItemLink('primary', 'fields', `/fields?categoryId=${category._id}`, isDisabled)
 
-                                +listItemLink('secondary', 'entries', `/entries?categoryId=${category._id}`, isDisabled)
+                                +listItemLink('secondary', 'entries', `/entries?categoryId=${category._id}&id=${category._id}`, isDisabled)
 
                                 +listItemLink('warning', 'edit', `/category/edit?id=${category._id}`, isDisabled)
 

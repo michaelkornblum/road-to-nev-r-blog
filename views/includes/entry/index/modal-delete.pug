@@ -1,0 +1,14 @@
+div.modal-backdrop.show
+div.modal(style="display: block", role="dialog")
+    div.modal-dialog.modal-dialog-centered(role="document")
+        div.modal-content
+            div.modal-header.bg-danger.text-light
+                h2.modal-title Danger!!!
+            div.modal-body
+                p You are about to delete the <strong>#{entry.title}</strong> entry.
+                p When you delete an entry, all data pertaining to that entry is permanently lost.
+                p Do you really want to do this?
+            div.modal-footer
+                a.btn.btn-secondary(href=`/entries?categoryId=${entry.categoryId}`) cancel
+                form(action=`/entry/delete/${entry._id}` method="POST")
+                    button.btn.btn-danger(type="submit") delete

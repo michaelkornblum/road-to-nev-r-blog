@@ -4,8 +4,17 @@ mixin notification(category, name, action)
             span(aria-hidden="true") &times;
 
 mixin listItemLink(color, label, url, isDisabled=false)
-    - let classes = `ml-2 btn btn-${color}`
+    - let classes = `mr-2 btn btn-${color} my-button`
     a(
         class=(isDisabled ? `${classes} disabled` : classes)
         href=(isDisabled ? null : url)
     )=label
+
+mixin buttonLink(color, label, url, isDisabled=false)
+    - let classes = `btn btn-${color} mt-3`
+    div.text-center
+        a(
+            style="width: 95%"
+            class=(isDisabled ? `${classes} disabled` : classes)
+            href=(isDisabled ? null : url)
+        )=label

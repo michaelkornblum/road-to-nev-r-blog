@@ -18,5 +18,5 @@ form.form-inline.ml-3(action=`/field/edit/${field._id}` method="POST")
             each fieldType in fieldTypes
                 option(value=fieldType)
         div.btn-group.my-3
-            button.btn.btn-success(type="submit") save
-            a.btn.btn-secondary.mx-1(href=`../../fields?categoryId=${category._id}`) cancel
+            button.btn.btn-success.my-button(type="submit") save
+            a.btn.btn-secondary.mx-1.my-button(href=`../../fields?categoryId=${category._id}`) cancel

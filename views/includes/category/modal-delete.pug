@@ -9,6 +9,6 @@ div.modal#delete-modal(style="display: block", role="dialog")
                 p When you delete a category, all associated fields and entries will also be deleted. 
                 p Do you really want to do this?
             div.modal-footer
-                a.btn.btn-secondary(href="/") cancel
+                a.btn.btn-secondary.my-button(href="/") cancel
                 form(action=`/category/delete/${categoryId}` method="POST")
-                    button.btn.btn-danger(type="submit") delete
+                    button.btn.btn-danger.my-button(type="submit") delete

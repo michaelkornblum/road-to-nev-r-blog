@@ -1,0 +1,7 @@
+{"author":"jDoe91","title":"bar","categoryId":"bApFsIBr5vgGsxWu","_id":"2tzVAgzFkcwlelva","createdAt":{"$$date":1580324645840},"updatedAt":{"$$date":1580324645840}}
+{"author":"jDoe91","title":"foo","categoryId":"bApFsIBr5vgGsxWu","_id":"8la569iVRrl4Us1A","createdAt":{"$$date":1580323484585},"updatedAt":{"$$date":1580323489319}}
+{"$$deleted":true,"_id":"2tzVAgzFkcwlelva"}
+{"author":"jDoe91","title":"another test","categoryId":"bApFsIBr5vgGsxWu","_id":"Tgl48BzPPthjv5Kx","createdAt":{"$$date":1580410902285},"updatedAt":{"$$date":1580410902285}}
+{"author":"jDoe91","title":"another test","categoryId":"bApFsIBr5vgGsxWu","_id":"Tgl48BzPPthjv5Kx","createdAt":{"$$date":1580410902285},"updatedAt":{"$$date":1580410904934},"duplicateName":false}
+{"$$deleted":true,"_id":"Tgl48BzPPthjv5Kx"}
+{"author":"jDoe91","title":"bar","categoryId":"bApFsIBr5vgGsxWu","_id":"8la569iVRrl4Us1A","createdAt":{"$$date":1580323484585},"updatedAt":{"$$date":1580410960198},"duplicateName":false}

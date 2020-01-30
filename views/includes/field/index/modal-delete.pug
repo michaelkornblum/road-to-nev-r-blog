@@ -9,6 +9,6 @@ div.modal(style="display: block", role="dialog")
                 p When you delete a field, all references made to that field in your entries will be deleted too. 
                 p Do you really want to do this?
             div.modal-footer
-                a.btn.btn-secondary(href=`/fields?categoryId=${category._id}`) cancel
+                a.btn.btn-secondary.my-button(href=`/fields?categoryId=${category._id}`) cancel
                 form(action=`/field/delete/${fieldId}` method="POST")
-                    button.btn.btn-danger(type="submit") delete
+                    button.btn.btn-danger.my-button(type="submit") delete
