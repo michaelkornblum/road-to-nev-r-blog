@@ -22,6 +22,28 @@ const getKeys = (...keys) =>
 		return { ...acc, [key]: true };
 	}, {});
 
+const editAction = (pageTitle, ...keys) => async (req, res) => {
+	try {
+		const entry = await Entry.findOne({ _id: req.query.id });
+		const category = await Category.findOne({ _id: entry.categoryId });
+		const fields = await Field.find({ categoryId: category._id });
+		const extObject = getKeys(...keys);
+		res.render('entry/edit', {
+			...defaultRenderObj,
+			...extObject,
+			pageTitle,
+			category,
+			fields,
+			entry,
+		});
+	} catch (err) {
+		console.error(err);
+	}
+};
+
+exports.getEditEntry = editAction('entry saved', 'isEditing');
+exports.getSavedEntry = editAction('entry saved', 'isEditing', 'wasSaved');
+
 exports.getEntryIndex = async (req, res) => {
 	try {
 		await Entry.remove({ duplicateName: true }, { multi: true });
@@ -63,66 +85,15 @@ exports.getAddEntry = async (req, res) => {
 	}
 };
 
-exports.getDuplicateEntry = async (req, res) => {
-	try {
-		const entry = await Entry.findOne({ _id: req.query.id });
-		const category = await Category.findOne({ _id: entry.categoryId });
-		const fields = await Field.find({ categoryId: category._id });
-		const extObject = getKeys('isEditing', 'duplicateName');
-		res.render('entry/edit', {
-			...defaultRenderObj,
-			...extObject,
-			pageTitle: 'duplicate entry',
-			category,
-			fields,
-			entry,
-		});
-	} catch (err) {
-		console.error(err);
-	}
-};
-
-exports.getEditEntry = async (req, res) => {
-	try {
-		const entry = await Entry.findOne({ _id: req.query.id });
-		const category = await Category.findOne({ _id: entry.categoryId });
-		const fields = await Field.find({ categoryId: category._id });
-		const extObject = getKeys('isEditing');
-		res.render('entry/edit', {
-			...defaultRenderObj,
-			...extObject,
-			pageTitle: 'entry saved',
-			category,
-			fields,
-			entry,
-		});
-	} catch (err) {
-		console.error(err);
-	}
-};
-
-exports.getSavedEntry = async (req, res) => {
-	try {
-		const entry = await Entry.findOne({ _id: req.query.id });
-		const category = await Category.findOne({ _id: entry.categoryId });
-		const fields = await Field.find({ categoryId: category._id });
-		const extObject = getKeys('isEditing', 'wasSaved');
-		res.render('entry/edit', {
-			...defaultRenderObj,
-			...extObject,
-			pageTitle: 'entry saved',
-			category,
-			fields,
-			entry,
-		});
-	} catch (err) {
-		console.error(err);
-	}
-};
+exports.getDuplicateEntry = editAction(
+	'duplicate entry',
+	'isEditing',
+	'duplicateName',
+);
 
 exports.getDeleteEntry = async (req, res) => {
 	try {
-		await Entry.remove({ duplicateName: true }, { multi: true });
+		// await Entry.remove({ duplicateName: true }, { multi: true });
 		const entry = await Entry.findOne({ _id: req.query.id });
 		const entries = await Entry.find({ categoryId: entry.categoryId });
 		const category = await Category.find({ _id: entry.categoryId });
