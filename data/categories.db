@@ -1,2 +1,4 @@
-{"name":"newsletter","_id":"00SDF8ETDeH2fNX9","createdAt":{"$$date":1580022903548},"updatedAt":{"$$date":1580022921482}}
-{"name":"shop","_id":"bApFsIBr5vgGsxWu","createdAt":{"$$date":1579887423815},"updatedAt":{"$$date":1579887423815}}
+{"name":"store","_id":"bApFsIBr5vgGsxWu","createdAt":{"$$date":1579887423815},"updatedAt":{"$$date":1580495123441}}
+{"name":"newsletter","_id":"s69h3YdpAECkUXuv","createdAt":{"$$date":1580495273711},"updatedAt":{"$$date":1580495273711}}
+{"name":"news","_id":"s69h3YdpAECkUXuv","createdAt":{"$$date":1580495273711},"updatedAt":{"$$date":1580495284786}}
+{"$$deleted":true,"_id":"s69h3YdpAECkUXuv"}

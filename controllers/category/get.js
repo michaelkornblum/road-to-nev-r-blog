@@ -34,11 +34,9 @@ const takeAction = key => async (req, res) => {
 const actionTaken = key => async (req, res) => {
 	try {
 		const categories = await Category.find();
-		const category = await Category.findOne({ name: req.query.name });
 		res.render('category/index', {
 			...defaultRenderObject,
 			categories,
-			categoryId: category._id,
 			categoryName: req.query.name,
 			[key]: true,
 		});

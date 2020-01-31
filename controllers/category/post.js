@@ -1,40 +1,40 @@
-const Category = require("../../models/Category");
-const Field = require("../../models/Field");
-const {camelCase} = require("../../utils/string-operations");
+const Category = require('../../models/Category');
+const Field = require('../../models/Field');
+const { camelCase } = require('../../utils/string-operations');
 
 exports.postAddCategory = async (req, res) => {
 	try {
-		const category = await Category.findOne(
-			{name: camelCase(req.body.name)}
-		);
+		const category = await Category.findOne({
+			name: camelCase(req.body.name),
+		});
 		if (category) {
 			res.redirect(`/category/duplicate?name=${category.name}`);
 		} else {
-			await Category.insert({name: camelCase(req.body.name)});
+			await Category.insert({ name: camelCase(req.body.name) });
 			res.redirect(`/category/added?name=${camelCase(req.body.name)}`);
 		}
-	} catch (err){
+	} catch (err) {
 		console.error(err);
 	}
 };
 
-exports.postEditCategory = async(req, res) => {
+exports.postEditCategory = async (req, res) => {
 	try {
 		await Category.update(
-			{_id: req.params.id}, 
-			{name: camelCase(req.body.name)}
+			{ _id: req.params.id },
+			{ name: camelCase(req.body.name) },
 		);
 		res.redirect(`/category/edited?name=${camelCase(req.body.name)}`);
-	} catch(err) {
+	} catch (err) {
 		console.error(err);
 	}
 };
 
-exports.postDeleteCategory = async(req, res) => {
+exports.postDeleteCategory = async (req, res) => {
 	try {
-		const category = await Category.findOne({_id: req.params.id});
-		await Category.remove({_id: req.params.id}, {multi: true});
-		await Field.remove({categoryId: req.params.id})
+		const category = await Category.findOne({ _id: req.params.id });
+		await Category.remove({ _id: req.params.id }, { multi: true });
+		await Field.remove({ categoryId: req.params.id });
 		res.redirect(`/category/deleted?name=${category.name}`);
 	} catch (err) {
 		console.error(err);
