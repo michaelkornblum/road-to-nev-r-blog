@@ -16,7 +16,7 @@
     "moment": "^2.24.0",
     "nedb": "^1.8.0",
     "path": "^0.12.7",
-    "pug": "^2.0.4"
+    "pug": "^3.0.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
